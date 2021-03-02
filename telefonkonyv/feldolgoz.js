@@ -20,7 +20,21 @@ function kiir() {
 
 
 }
-
+function beolvas() {
+    $.ajax({
+        type: "GET",
+        url: "feldolgoz.php",
+        success: function (result) {
+            console.log(result); /*JSONn formátumban várjuk az AB eredményeit*/
+            telefonkonyvem = JSON.parse(result);
+            console.log(telefonkonyvem); /*JSONn formátumban várjuk az AB eredményeit*/
+            kiir();
+        },
+        error: function () {
+            alert("Hiba az adatok betöltésekor!");
+        }
+    });
+}
 function adBeir() {
 //    var nev = $("#nev").val();
 //    var tel = $("#tel").val();
@@ -32,8 +46,6 @@ function adBeir() {
         kep: $("#kep").val()
 
     };
-
-
 
 
 
@@ -53,3 +65,4 @@ function adBeir() {
         }
     });
 }
+
