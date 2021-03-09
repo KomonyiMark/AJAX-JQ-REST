@@ -18,7 +18,7 @@ and open the template in the editor.
             <header><h1>Telefonkönyv</h1></header>
             <nav>
                 <ul>
-                   
+
                     <li id="beolvas"><a href="#">Beolvas</a></li>
                 </ul>
 
@@ -34,7 +34,26 @@ and open the template in the editor.
                 <br>
                 <button id="kuld">Küld</button>
 
+            </section>  
+              
+            <section class="elrejt szerkesztes">
+            
+                    <p for="nev">ID:</p>
+                    <input type="text" id="id2" name="id2" >
+                           <p for="nev">név:</p>
+                    <input type="text" id="nev2" name="nev2" >
+                           <p for="tel">tel:</p>
+                    <input type="text" id="tel2" name="tel2">
+                    <p for="kep">kép:</p>
+                    <input type="text2" id="kep2" >
+                    <br>
+                    <button id="modosit">Módosít</button>
+                    <br>
+                    <button id="megse">Mégse</button>
+<br>
+          
             </section>
+                   
             <article>
 
 

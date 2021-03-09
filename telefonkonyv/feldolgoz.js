@@ -2,7 +2,12 @@ $(function () {
 
     $("#beolvas").on("click", beolvas);
     $("#kuld").on("click", adBeir);
+      
       $("article").delegate(".torol","click", adatTorol);
+        $("article").delegate(".szerkeszt","click", adatSzerkeszt);
+          $("#megse").on("click", adatMegse);
+            $("#modosit").on("click", adatModosit);
+      
 });
 var telefonkonyvem = [];
 function kiir() {
@@ -15,13 +20,67 @@ function kiir() {
         var ID = telefonkonyvem[i].ID;
         var tel = telefonkonyvem[i].tel;
         var kep = telefonkonyvem[i].kep;
-        var elem = "<div><h2>" + nev + "</h2><p>" + tel + "</p> <p>" + kep + "</p><button id="+ID+" class='torol'>Töröl</button></div>";
+        var elem = "<div><h2>" + nev + "</h2><p>" + tel + "</p> <p>" + kep + "</p><button id="+ID+" class='torol'>Töröl</button><button id="+i+" class='szerkeszt'>Szerkeszt</button></div>";
         $("article").append(elem);
     }
 
 
 
 }
+
+function adatModosit(){
+    
+       var editszemely = {
+        ID: $("#id2").val(),
+        nev: $("#nev2").val(),
+        tel: $("#tel2").val(),
+        kep: $("#kep2").val()
+
+    };
+
+
+    console.log("Módosit");
+        console.log(editszemely);
+
+    $.ajax({
+        type: "PUT",
+        url: "modosit.php",
+        data: editszemely,
+        success: function () {
+
+      
+           beolvas();
+        },
+        error: function () {
+            alert("Hiba az adatok mentésekor(uj)");
+        }
+    });
+    
+    
+}
+function adatMegse(){
+    
+    $(".szerkesztes").addClass("elrejt");
+}
+
+
+
+function adatSzerkeszt(){
+    console.log("modosit");
+    var index = $(this).attr("id");
+    console.log(index);
+    
+    $(".szerkesztes").removeClass("elrejt");
+     $("#id2").val(telefonkonyvem[index].ID);
+     $("#nev2").val(telefonkonyvem[index].nev);
+       $("#tel2").val(telefonkonyvem[index].tel);
+      $("#kep2").val(telefonkonyvem[index].kep);
+    
+        
+
+}
+
+
 function beolvas() {
     $.ajax({
         type: "GET",
@@ -87,4 +146,5 @@ function adatTorol(){
         }
     });
 }
+
 
